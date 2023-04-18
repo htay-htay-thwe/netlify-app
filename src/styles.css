@@ -35,11 +35,13 @@ ul{
 header{
     margin: 10px 0px;
 }
-body{
+main{
     background-size: 70% 120%;
     padding: 20px 30px;
     border:2px solid black;
     max-width:800px;
     margin: 20px 0px 0px 40px;
 }
-
+footer{
+    margin: 20px 0px 0px 50px;
+}
