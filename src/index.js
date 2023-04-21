@@ -34,6 +34,8 @@ function showData(response){
     document.querySelector("#preci").innerHTML=`Visibility : ${response.data.visibility}`;
    document.querySelector("#number").innerHTML = Math.round(response.data.main.temp);
  document.querySelector("#wind").innerHTML=`Wind : ${response.data.wind.speed}km/h`;
+let iconElement=document.querySelector("#sunIcon");
+iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 function showWeatherCondition(event){
@@ -45,6 +47,33 @@ let apiUrl =`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid
 axios.get(apiUrl).then(showData);
 
 }
-navigator.geolocation.getCurrentPosition(showWeatherCondition);
+
 let place=document.querySelector("#search");
 place.addEventListener("click",showWeatherCondition);
+
+
+
+let forecastElement=document.querySelector("#forecast");
+let forecastHTML=`<div class="row">`;
+let forecastTemperature=["Sun","Sat"];
+forecastTemperature.forEach(function(Day){
+
+forecastHTML =
+  forecastHTML +
+  `
+<div class="col-2">
+    <div class="days">
+        ${Day}
+        <div class="iconic">
+           <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="clear"/></div>
+        <div class="temperatureMax">
+         <span>34°</span>
+         <span>37°</span>
+</div>
+</div>`;
+
+});
+
+
+forecastHTML=forecastHTML + `</div>`;
+forecastElement.innerHTML=forecastHTML;
